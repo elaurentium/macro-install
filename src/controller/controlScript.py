@@ -1,7 +1,13 @@
 import subprocess
+import os
 import tkinter
 import tkinter.messagebox
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path='.env.local')
+
+server = os.getenv('HD_CLOUD_SERVER')
 
 def execScript(scriptPath):
     script_path = Path(scriptPath)
@@ -25,7 +31,7 @@ def execScript(scriptPath):
 
 def execButton(select):
     script_paths = {
-        "Script Completo": r"\\10.8.0.41\Info_Fabrica\Informatica e Telecom\Suporte - Infra\___BASE INSTALL\ALLINSTALL.cmd",
+        "Script Completo": rf"\\{server}\Info_Fabrica\Informatica e Telecom\Suporte - Infra\___BASE INSTALL\ALLINSTALL.cmd",
         "Atualização": r"W:\Programas\DB\atualizar.ps1",
         "XPTO": r"C:\Users\meu_script_xpto.ps1"
     }
