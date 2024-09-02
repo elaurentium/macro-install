@@ -9,8 +9,8 @@ def execScript(scriptPath):
     if not script_path.exists():
         raise FileNotFoundError(f"Arquivo não encontrado: {script_path}")
     
-    command = ["powershell", "-NoExit", "-Command", f"Start-Process powershell -ArgumentList '-NoExit', '-File', '{script_path}'"]
-
+    command = f'cmd /c start cmd /k "{script_path}"'
+    
     try:
         result = subprocess.Popen(command, shell=True)
         return result
@@ -25,7 +25,7 @@ def execScript(scriptPath):
 
 def execButton(select):
     script_paths = {
-        "Script Completo": r"C:\Users\evandro.limeira\Documents\macro.ps1",
+        "Script Completo": r"\\10.8.0.41\Info_Fabrica\Informatica e Telecom\Suporte - Infra\___BASE INSTALL\ALLINSTALL.cmd",
         "Atualização": r"W:\Programas\DB\atualizar.ps1",
         "XPTO": r"C:\Users\meu_script_xpto.ps1"
     }
