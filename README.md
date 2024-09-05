@@ -34,3 +34,7 @@ Com o **Macro Install**, você pode rapidamente configurar seu ambiente com um c
 
     pip install python-dotenv
 
+
+
+ **Este projeto está licenciado sob a licença MIT - consulte o arquivo LICENSE para mais detalhes.**
+
