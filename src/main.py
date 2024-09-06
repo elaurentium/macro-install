@@ -1,4 +1,4 @@
-from graph.screen import screen
+from gui.screen import screen
 
 def main():
     screen()
