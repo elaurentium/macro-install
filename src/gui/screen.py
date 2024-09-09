@@ -4,7 +4,7 @@ import json
 import os
 from controller.controlScript import ControScript
 
-PATH_FILE = 'paths.json'
+PATH_FILE = './src/paths/paths.json'
 
 class Screen:
     @staticmethod
