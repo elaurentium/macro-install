@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import json
-from controller.controlScript import *
+import os
+from controller.controlScript import ControScript
 
 PATH_FILE = 'paths.json'
 
@@ -48,7 +49,7 @@ class Screen:
         style.configure('TButton', padding=10)
         style.configure('TCombox', padding=5)
 
-        input_options = ttk.Combobox(root, values=options)
+        input_options = ttk.Combobox(root, values=Screen.options)
         input_options.pack(pady=20, padx=10)
 
         input_options.bind("<<ComboboxSelected>>", Screen.onSelection)
@@ -59,7 +60,7 @@ class Screen:
         browserButton = ttk.Button(button_frame, text="Procurar", command=lambda: Screen.updateOptions(input_options))
         browserButton.pack(side='top', pady=5)
 
-        button = ttk.Button(button_frame, text="Executar", command=lambda: Screen.execButton(select))
+        button = ttk.Button(button_frame, text="Executar", command=lambda: ControScript.execButton(select))
         button.pack(side='top', pady=5)
         
         root.mainloop()
