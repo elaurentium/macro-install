@@ -1,6 +1,7 @@
 import subprocess
 import os
 import tkinter
+import tkinter.filedialog
 import tkinter.messagebox
 from pathlib import Path
 from dotenv import load_dotenv
@@ -8,6 +9,8 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path='.env.local')
 
 server = os.getenv('HD_CLOUD_SERVER')
+
+options = []
 
 def execScript(scriptPath):
     script_path = Path(scriptPath)
@@ -35,18 +38,21 @@ def execScript(scriptPath):
 
 
 def execButton(select):
-    script_paths = {
-        "Script Completo": rf"\\{server}\Info_Fabrica\Informatica e Telecom\Suporte - Infra\___BASE INSTALL\ALLINSTALL.cmd",
-        "Atualização": r"C:\Users\evandro.limeira\Documents\macro.ps1",
-        "XPTO": r"C:\Users\meu_script_xpto.ps1"
-    }
-
     try:
-        script_path = script_paths[select]
-        result = execScript(script_path)
-
+        result = execScript(select)
         return result
     except KeyError:
         tkinter.messagebox.showinfo("Informação", "Opção inválida selecionada!")
     except FileNotFoundError as error:
         tkinter.messagebox.showerror("Erro", str(error))
+
+
+def searchButton():
+    dir_win = tkinter.filedialog.askopenfilename(title="Selecione um arquivo")
+
+    if dir_win:
+        options.append(dir_win)
+
+    execButton(dir_win)
+
+    return dir_win
