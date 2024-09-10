@@ -1,7 +1,6 @@
-from gui.screen import Screen
+from gui.screen import screen
 
-class Main:
-    def main():
-        Screen.screen()
+def main():
+    screen()
 
-Main.main()
+main()
