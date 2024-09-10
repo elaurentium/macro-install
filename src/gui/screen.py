@@ -4,7 +4,7 @@ import json
 import os
 from controller.controlScript import ControScript
 
-PATH_FILE = './src/paths/paths.json'
+PATH_FILE = r'.\src\paths\paths.json' if os.name == 'nt' else './src/paths/paths.json'
 
 class Screen:
     @staticmethod
@@ -16,6 +16,7 @@ class Screen:
     
     @staticmethod
     def save_path(paths):
+        os.makedirs(os.path.dirname(PATH_FILE), exist_ok=True)
         with open(PATH_FILE, 'w') as file:
             json.dump(paths,file)
 
