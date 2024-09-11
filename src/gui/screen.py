@@ -1,30 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
-import json
-import os
 from controller.controlScript import *
-
-PATH_FILE = r'.\src\paths\paths.json' if os.name == 'nt' else './src/paths/paths.json'
-
-
-def load_paths():
-    if os.path.exists(PATH_FILE):
-        with open(PATH_FILE, 'r') as file:
-            return json.load(file)
-    return []
-
-def save_path(paths):
-    os.makedirs(os.path.dirname(PATH_FILE), exist_ok=True)
-    with open(PATH_FILE, 'w') as file:
-        json.dump(paths,file)
-
+from controller.paths import *
 
 options = load_paths()
 
 def onSelection(event):
     global select
     select = event.widget.get()
-
 
 def updateOptions(option):
     new_option = searchButton()
@@ -34,7 +17,7 @@ def updateOptions(option):
     new_val = list(set(options))
 
     option['values'] = new_val
-
+    
     save_path(new_val)
 
 def screen():
@@ -61,5 +44,3 @@ def screen():
     button.pack(side='top', pady=5)
     
     root.mainloop()
-
-

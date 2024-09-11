@@ -30,6 +30,7 @@ def execScript(scriptPath):
             f"Saída do script:\n{error.stdout}"
         )
         return error
+    
 def execButton(select):
     try:
         result = execScript(select)
@@ -38,6 +39,7 @@ def execButton(select):
         tkinter.messagebox.showinfo("Informação", "Opção inválida selecionada!")
     except FileNotFoundError as error:
         tkinter.messagebox.showerror("Erro", str(error))
+
 def searchButton():
     dir_win = tkinter.filedialog.askopenfilename(title="Selecione um arquivo")
 
