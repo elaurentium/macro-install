@@ -1,16 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
-from controller.controlScript import *
-from controller.paths import *
+import rust_python_integration
 
-options = load_paths()
+options = rust_python_integration.load_paths()
 
 def onSelection(event):
     global select
     select = event.widget.get()
 
 def updateOptions(option):
-    new_option = searchButton()
+    new_option = rust_python_integration.search_button()
 
     options.append(new_option)
 
@@ -18,7 +17,7 @@ def updateOptions(option):
 
     option['values'] = new_val
     
-    save_path(new_val)
+    rust_python_integration.save_path(new_val)
 
 def screen():
     root = tk.Tk()
@@ -40,7 +39,7 @@ def screen():
     browserButton = ttk.Button(button_frame, text="Procurar", command=lambda: updateOptions(input_options))
     browserButton.pack(side='top', pady=5)
 
-    button = ttk.Button(button_frame, text="Executar", command=lambda: execButton(select))
+    button = ttk.Button(button_frame, text="Executar", command=lambda: rust_python_integration.exec_button(select))
     button.pack(side='top', pady=5)
     
     root.mainloop()
