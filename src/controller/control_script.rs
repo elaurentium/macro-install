@@ -10,6 +10,7 @@ lazy_static::lazy_static! {
     static ref OPTIONS: Mutex<Vec<String>> = Mutex::new(new![]);
 }
 
+#[pymodule]
 fn exec_script(script_path: &str) -> Result<(), io::Error>  {
     let path = Path::new(script_path);
 
@@ -45,6 +46,7 @@ fn exec_script(script_path: &str) -> Result<(), io::Error>  {
     }
 }
 
+#[pymodule]
 fn exec_button(select: &str) {
     match exec_script(select) {
         Ok(_) => (),
@@ -59,6 +61,7 @@ fn exec_button(select: &str) {
     }
 }
 
+#[pymodule]
 fn search_button() -> Option<String> {
     let file_path = FileDialog::new().pick_file();
 
