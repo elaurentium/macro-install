@@ -1,21 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-import json
-import os
-from controller.controlScript import *
-
-PATH_FILE = r'.\src\paths\paths.json' if os.name == 'nt' else './src/paths/paths.json'
-
-def load_paths():
-    if os.path.exists(PATH_FILE):
-        with open(PATH_FILE, 'r') as file:
-            return json.load(file)
-    return []
-
-def save_path(paths):
-    os.makedirs(os.path.dirname(PATH_FILE), exist_ok=True)
-    with open(PATH_FILE, 'w') as file:
-        json.dump(paths,file)
+from controller.controlScript import execButton, searchButton
+from controller.paths import load_paths, save_path
 
 options = load_paths()
 
@@ -25,7 +11,7 @@ def onSelection(event):
 
 
 def updateOptions(option):
-    new_option = search_button()
+    new_option = searchButton()
 
     options.append(new_option)
 
@@ -55,7 +41,7 @@ def screen():
     browserButton = ttk.Button(button_frame, text="Procurar", command=lambda: updateOptions(input_options))
     browserButton.pack(side='top', pady=5)
 
-    button = ttk.Button(button_frame, text="Executar", command=lambda: controlScript.exec_button(select))
+    button = ttk.Button(button_frame, text="Executar", command=lambda: execButton(select))
     button.pack(side='top', pady=5)
     
     root.mainloop()

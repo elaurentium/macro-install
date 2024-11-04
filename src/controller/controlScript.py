@@ -12,14 +12,14 @@ def execScript(scriptPath):
 
     if not script_path.exists():
         raise FileNotFoundError(f"Arquivo não encontrado: {script_path}")
-    
+
     ext = os.path.splitext(script_path)[1].lower()
 
     if ext == '.cmd':
         command = f'cmd /c start cmd /k "{script_path}"'
     else:
         command = f'cmd /c start powershell -NoExit -File "{script_path}"'
-    
+
     try:
         result = subprocess.Popen(command, shell=True)
         return result
@@ -30,6 +30,7 @@ def execScript(scriptPath):
             f"Saída do script:\n{error.stdout}"
         )
         return error
+    
 def execButton(select):
     try:
         result = execScript(select)
@@ -38,12 +39,11 @@ def execButton(select):
         tkinter.messagebox.showinfo("Informação", "Opção inválida selecionada!")
     except FileNotFoundError as error:
         tkinter.messagebox.showerror("Erro", str(error))
+
+        
 def searchButton():
     dir_win = tkinter.filedialog.askopenfilename(title="Selecione um arquivo")
 
     if dir_win:
         options.append(dir_win)
         execButton(dir_win)
-
-
-    return dir_win
