@@ -162,3 +162,7 @@ cython_debug/
 
 # Arquivo .Json
 *.json
+
+# Added by cargo
+
+/target
